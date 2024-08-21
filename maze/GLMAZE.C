@@ -14,8 +14,8 @@ MazeOptions maze_options =
     RENDER_FLAT,    // render mode (WALLS)
     RENDER_FLAT,    // render mode (FLOOR)
     RENDER_FLAT,    // render mode (CEILING)
-    FALSE,           // frame_count
-    FALSE,          // top_view
+    TRUE,           // frame_count
+    TRUE,          // top_view
     TRUE,           // eye_view
     FALSE,          // single_step
     FALSE,          // all_alpha
@@ -316,6 +316,9 @@ void NewMaze(void)
 static MazeGoal *found_goal = NULL;
 static int rot_step;
 
+static POINT StartPoint = { 640, 400 };
+static BOOL Grabbing = FALSE;
+
 CALLBACK Step(void *data)
 {
     int i;
@@ -336,7 +339,7 @@ CALLBACK Step(void *data)
             UpdateRatPosition(&rats[i]);
         }
         
-        goal = SolveMazeStep(&vw, &sol);
+        /*goal = SolveMazeStep(&vw, &sol);
         if (goal == &maze_goals[GOAL_END])
         {
             solve_state = SST_MAZE_SHRINK;
@@ -346,7 +349,36 @@ CALLBACK Step(void *data)
             solve_state = SST_ROTATE;
             found_goal = goal;
             rot_step = 0;
+        }*/
+
+        if (GetAsyncKeyState('W') & 0x8000) {
+            vw.pos.x += FxMulDiv(FaCos(vw.ang), MAZE_CELL_SIZE, 18);
+            vw.pos.y += FxMulDiv(FaSin(vw.ang), MAZE_CELL_SIZE, 18);
         }
+
+        if (GetAsyncKeyState('S') & 0x8000) {
+            vw.pos.x -= FxMulDiv(FaCos(vw.ang), MAZE_CELL_SIZE, 18);
+            vw.pos.y -= FxMulDiv(FaSin(vw.ang), MAZE_CELL_SIZE, 18);
+        }
+
+        if (GetAsyncKeyState('A') & 0x8000) {
+            vw.pos.x += FxMulDiv(FaCos(vw.ang - FaDeg(90)), MAZE_CELL_SIZE, 18);
+            vw.pos.y += FxMulDiv(FaSin(vw.ang - FaDeg(90)), MAZE_CELL_SIZE, 18);
+        }
+
+        if (GetAsyncKeyState('D') & 0x8000) {
+            vw.pos.x += FxMulDiv(FaCos(vw.ang + FaDeg(90)), MAZE_CELL_SIZE, 18);
+            vw.pos.y += FxMulDiv(FaSin(vw.ang + FaDeg(90)), MAZE_CELL_SIZE, 18);
+        }
+
+        POINT p;
+        if (GetCursorPos(&p))
+        {
+            double xdelta = p.x - StartPoint.x;
+            vw.ang += xdelta * 0.001;
+            SetCursorPos(StartPoint.x, StartPoint.y);
+        }
+
         break;
 
     case SST_MAZE_GROW:
