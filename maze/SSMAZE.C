@@ -1038,6 +1038,40 @@ void DrawMazeWalls(void)
 
 #define SQRT2_2 0.707107f
 
+void DrawGun()
+{
+    int c;
+    Cell* cell;
+    Object* obj;
+    float vx, vy, cx, cy, width, ang;
+    extern float gfAspect;
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0, 1, 0, 1);
+    glMatrixMode(GL_MODELVIEW);
+
+    UseTextureEnv(&gTexEnv[1]);
+    glEnable(GL_TEXTURE_2D);
+
+
+    glBegin(GL_POLYGON);
+
+    glTexCoord2f(0.0f, 0.0f);
+    glColor3f(1.0, 0.0, 0.0);
+    glVertex2f(0.0f, 0.0f);
+
+    glTexCoord2f(1.0f, 1.0f);
+    glColor3f(0.0, 1.0, 0.0);
+    glVertex2f(1.0f, 1.0f);
+
+    glTexCoord2f(0.0f, 1.0f);
+    glColor3f(0.0, 0.0, 1.0);
+    glVertex2f(0.0f, 1.0f);
+
+    glEnd();
+}
+
 void DrawTopView(MazeView *vw)
 {
     int c;

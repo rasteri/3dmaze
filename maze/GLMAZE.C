@@ -108,6 +108,8 @@ void Draw(void)
         DrawTopView(&vw);
     }
     
+    DrawGun();
+
     glFlush();
 }
 
