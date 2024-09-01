@@ -30,6 +30,7 @@
     <ClCompile Include="PALETTE.CXX" />
     <ClCompile Include="SCRNSAVE.CXX" />
     <ClCompile Include="SSA8.C" />
+    <ClCompile Include="SSBGRA.C" />
     <ClCompile Include="SSDIB.C" />
     <ClCompile Include="SSIMAGE.C" />
     <ClCompile Include="SSINIT.CXX" />

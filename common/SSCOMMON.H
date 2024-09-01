@@ -430,6 +430,8 @@ extern BOOL ss_LoadTextureResourceStrings();
 extern BOOL ss_DIBImageLoad(PVOID pvFile, TEXTURE *ptex);
 extern BOOL ss_RGBImageLoad(PVOID pvFile, TEXTURE *ptex);
 extern BOOL ss_A8ImageLoad(PVOID pvFile, TEXTURE *ptex);
+extern BOOL andy_BGRAImageLoad(char *filename, TEXTURE* ptex);
+int andy_LoadTextureFile(char* filename, TEXTURE* pTex);
 extern BOOL ss_VerifyTextureFile( TEXFILE *ptf );
 extern BOOL ss_SelectTextureFile( HWND hDlg, TEXFILE *ptf );
 extern void ss_GetDefaultBmpFile( LPTSTR pszBmpFile );

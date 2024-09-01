@@ -64,6 +64,7 @@ TEX_RES gTexResObject[NUM_OBJECT_TEXTURES] = {
     {TEX_A8,  IDB_AD},
     {TEX_BMP, IDB_COVER}
 };
+
 SSContext gssc;
 
 CALLBACK maze_Init( void *data );
@@ -562,7 +563,7 @@ LoadTextures(void)
     TEX_ENV *pTexEnv = gTexEnv;
     TEX_RES *pTexRes;
 
-    assert( (NUM_SURFACES + NUM_OBJECT_TEXTURES) == NUM_TEXTURES );
+    //assert( (NUM_SURFACES + NUM_OBJECT_TEXTURES) == NUM_TEXTURES );
 
     // load surface textures (wall, floor, ceiling)
 
@@ -618,6 +619,19 @@ LoadTextures(void)
         // No repetition
         pTexEnv->texRep.x = pTexEnv->texRep.y = 1;
     }
+
+    // load andy's textures
+    if (andy_LoadTextureFile("SHTGA0.bgra", pTex))
+        pTexEnv->pTex = pTex;
+    else
+        pTexEnv->pTex = NULL;
+
+    pTexEnv->bTransp = FALSE;
+
+    // For now we don't do palrot's on any of the object textures
+    pTexEnv->bPalRot = FALSE;
+    // No repetition
+    pTexEnv->texRep.x = pTexEnv->texRep.y = 1;
 
     // Set transparency for some of the textures
     ss_SetTextureTransparency( gTexEnv[TEX_START].pTex, 0.42f, FALSE );

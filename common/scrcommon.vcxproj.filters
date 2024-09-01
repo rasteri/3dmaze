@@ -72,6 +72,9 @@
     <ClCompile Include="UTIL.CXX">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SSBGRA.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLEAR.HXX">

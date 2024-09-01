@@ -90,7 +90,7 @@
       </IgnoreSpecificDefaultLibraries>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>..\common;..\glaux</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\common;..\glaux;C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

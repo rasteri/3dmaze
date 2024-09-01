@@ -1040,6 +1040,7 @@ void DrawMazeWalls(void)
 
 void DrawGun()
 {
+    GLenum old_env;
     int c;
     Cell* cell;
     Object* obj;
@@ -1051,25 +1052,28 @@ void DrawGun()
     gluOrtho2D(0, 1, 0, 1);
     glMatrixMode(GL_MODELVIEW);
 
-    UseTextureEnv(&gTexEnv[1]);
+    UseTextureEnv(&gTexEnv[TEX_SHTGA0]);
     glEnable(GL_TEXTURE_2D);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glGetTexEnviv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, &old_env);
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, gTexEnvMode);
 
     glBegin(GL_POLYGON);
 
-    glTexCoord2f(0.0f, 0.0f);
-    glColor3f(1.0, 0.0, 0.0);
+    glTexCoord2f(0.0f, 1.0f);
     glVertex2f(0.0f, 0.0f);
 
-    glTexCoord2f(1.0f, 1.0f);
-    glColor3f(0.0, 1.0, 0.0);
-    glVertex2f(1.0f, 1.0f);
+    glTexCoord2f(0.5f, 0.0f);
+    glVertex2f(0.5f, 1.0f);
 
-    glTexCoord2f(0.0f, 1.0f);
-    glColor3f(0.0, 0.0, 1.0);
-    glVertex2f(0.0f, 1.0f);
+    glTexCoord2f(1.0f, 1.0f);
+    glVertex2f(1.0f, 0.0f);
 
     glEnd();
+    glDisable(GL_BLEND);
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, old_env);
 }
 
 void DrawTopView(MazeView *vw)

@@ -17,6 +17,7 @@ enum {
     TEX_RAT,
     TEX_AD,
     TEX_COVER,
+    TEX_SHTGA0,
     NUM_TEXTURES
 };
 

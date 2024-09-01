@@ -18,7 +18,6 @@ extern "C" {
 
 extern BOOL bVerifyDIB(LPTSTR pszFileName, ISIZE *pSize );
 extern BOOL bVerifyRGB(LPTSTR pszFileName, ISIZE *pSize );
-
 #ifdef __cplusplus
 }
 #endif

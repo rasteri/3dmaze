@@ -154,6 +154,17 @@ ss_LoadTextureFile( TEXFILE *pTexFile, TEXTURE *pTex )
     return ProcessTkTexture( image, pTex );
 }
 
+
+
+int
+andy_LoadTextureFile(char* filename, TEXTURE* pTex)
+{
+    if (!andy_BGRAImageLoad(filename, pTex))
+        return NULL;
+
+    return ProcessTexture(pTex);
+}
+
 /******************************Public*Routine******************************\
 *
 * ss_LoadTextureResource
@@ -343,7 +354,7 @@ SetDefaultTextureParams()
 *
 \**************************************************************************/
 
-static int 
+int 
 ProcessTexture( TEXTURE *pTex )
 {
     // Enforce proper texture size (power of 2, etc.)
