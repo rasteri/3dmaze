@@ -863,7 +863,7 @@ ss_Init( void )
         pFloater->ChildSizeFunc = SetFloaterInfo;
     }
 
-    //playMIDIFile(GetActiveWindow(), L"3dmaze.mid");
+    playMIDIFile(GetActiveWindow(), L"3dmaze.mid");
 
     return &gssc;
 }

@@ -1038,6 +1038,14 @@ void DrawMazeWalls(void)
 
 #define SQRT2_2 0.707107f
 
+int gunstate = 0;
+
+int Gunstates[] = {
+    0, 1, 2, 3, 4, 5, 4, 3, 0
+};
+
+int cunt;
+
 void DrawGun()
 {
     GLenum old_env;
@@ -1047,12 +1055,23 @@ void DrawGun()
     float vx, vy, cx, cy, width, ang;
     extern float gfAspect;
 
+    float triwidth = 1/gfAspect;
+
+    float trixmin = 0.5f - (93.0f / 163.0f) * triwidth; // don't ask
+    float trixmax = trixmin + triwidth;
+
+    cunt+=2;
+    if (cunt > 89) 
+        cunt = 0;
+
+    gunstate = cunt / 10;
+
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(0, 1, 0, 1);
     glMatrixMode(GL_MODELVIEW);
 
-    UseTextureEnv(&gTexEnv[TEX_SHTG0]);
+    UseTextureEnv(&gTexEnv[TEX_SHTG0 + Gunstates[gunstate]]);
     glEnable(GL_TEXTURE_2D);
 
     glEnable(GL_BLEND);
@@ -1062,14 +1081,14 @@ void DrawGun()
 
     glBegin(GL_POLYGON);
 
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex2f(0.0f, 0.0f);
+    glTexCoord2f(0.0f, 0.0f);
+    glVertex2f(trixmin, 1.0f);
 
-    glTexCoord2f(0.5f, 0.0f);
-    glVertex2f(0.5f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f);
+    glVertex2f(trixmin, 0.0f);
 
     glTexCoord2f(1.0f, 1.0f);
-    glVertex2f(1.0f, 0.0f);
+    glVertex2f(trixmax, 0.0f);
 
     glEnd();
     glDisable(GL_BLEND);
