@@ -17,7 +17,12 @@ enum {
     TEX_RAT,
     TEX_AD,
     TEX_COVER,
-    TEX_SHTGA0,
+    TEX_SHTG0,
+    TEX_SHTG1,
+    TEX_SHTG2,
+    TEX_SHTG3,
+    TEX_SHTG4,
+    TEX_SHTG5,
     NUM_TEXTURES
 };
 

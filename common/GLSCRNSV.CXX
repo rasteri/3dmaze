@@ -481,6 +481,8 @@ SCRNSAVE::CreateMainWindow()
             nCx = GetSystemMetrics( SM_CXSCREEN ) >> 1;
             nCy = GetSystemMetrics( SM_CYSCREEN ) >> 1;
 
+            nCx = 800;
+            nCy = 600;
             if( initParam ) {
                 // get size of window from args
                 LPCTSTR szArgs = (LPCTSTR) initParam;

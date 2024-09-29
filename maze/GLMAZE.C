@@ -625,6 +625,7 @@ LoadTextures(void)
     TEXTURE *pTex = all_textures;
     TEX_ENV *pTexEnv = gTexEnv;
     TEX_RES *pTexRes;
+    char buf[256];
 
     //assert( (NUM_SURFACES + NUM_OBJECT_TEXTURES) == NUM_TEXTURES );
 
@@ -684,17 +685,22 @@ LoadTextures(void)
     }
 
     // load andy's textures
-    if (andy_LoadTextureFile("SHTGA0.bgra", pTex))
-        pTexEnv->pTex = pTex;
-    else
-        pTexEnv->pTex = NULL;
+    for (int x = 0; x < 6; x++, pTex++, pTexEnv++, pTexRes++) {
 
-    pTexEnv->bTransp = FALSE;
+        sprintf_s(buf, 256, "%d.bgra", x);
 
-    // For now we don't do palrot's on any of the object textures
-    pTexEnv->bPalRot = FALSE;
-    // No repetition
-    pTexEnv->texRep.x = pTexEnv->texRep.y = 1;
+        if (andy_LoadTextureFile(buf, pTex))
+            pTexEnv->pTex = pTex;
+        else
+            pTexEnv->pTex = NULL;
+
+        pTexEnv->bTransp = FALSE;
+
+        // For now we don't do palrot's on any of the object textures
+        pTexEnv->bPalRot = FALSE;
+        // No repetition
+        pTexEnv->texRep.x = pTexEnv->texRep.y = 1;
+    }
 
     // Set transparency for some of the textures
     ss_SetTextureTransparency( gTexEnv[TEX_START].pTex, 0.42f, FALSE );
@@ -857,7 +863,7 @@ ss_Init( void )
         pFloater->ChildSizeFunc = SetFloaterInfo;
     }
 
-    playMIDIFile(GetActiveWindow(), L"3dmaze.mid");
+    //playMIDIFile(GetActiveWindow(), L"3dmaze.mid");
 
     return &gssc;
 }

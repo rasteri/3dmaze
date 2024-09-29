@@ -1,0 +1,1 @@
+magick.exe .\SHTGA0.png SHTGA0.bgra

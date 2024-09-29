@@ -1052,7 +1052,7 @@ void DrawGun()
     gluOrtho2D(0, 1, 0, 1);
     glMatrixMode(GL_MODELVIEW);
 
-    UseTextureEnv(&gTexEnv[TEX_SHTGA0]);
+    UseTextureEnv(&gTexEnv[TEX_SHTG0]);
     glEnable(GL_TEXTURE_2D);
 
     glEnable(GL_BLEND);
